@@ -1,0 +1,85 @@
+import { Player } from "./player";
+    const players: Player[] = [
+        new Player(1, "Daniel", "Scott", 79, 92, "Scotland", 85.5, "Attacker"),
+        new Player(2, "Ali", "Aslam", 98, 94, "Northern Ireland", 96.0, "Midfielder"),
+        new Player(3, "Oliver", "Barker", 89, 95, "England", 92.0, "Defender"),
+        new Player(4, "Jordan", "Robinson", 45, 89, "Wales", 67.0, "Attacker"),
+        new Player(5, "Steven", "Walker", 88, 87, "Wales", 87.5, "Midfielder"),
+        new Player(6, "Alfie", "Loy", 85, 79, "Wales", 82.0, "Attacker"),
+        new Player(7, "Rashid", "Bhatti", 90, 86, "England", 88.0, "Midfielder"),
+        new Player(8, "Thomas", "Taylor", 97, 85, "England", 91.0, "Defender"),
+        new Player(9, "Theo", "Dolan", 87, 82, "Scotland", 84.5, "Attacker"),
+        new Player(10,"Finley","Cross",95,83,"Northern Ireland",89.0,"Midfielder"),
+        new Player(11, "Joshua", "Mills", 92, 71, "Scotland", 81.5, "Attacker"),
+        new Player(12,"Leander","Moore",91,72,"Northern Ireland",81.5,"Midfielder"),
+        new Player(13, "Isaac", "Johnson", 76, 77, "England", 76.5, "Defender"),
+        new Player(14, "William", "Adams", 78, 78, "England", 78.0, "Midfielder"),
+        new Player(15, "Jacob", "Stone", 77, 79, "Wales", 78.0, "Midfielder"),
+        new Player(16, "James", "Chaffey", 93, 70, "Wales", 81.5, "Attacker"),
+        new Player(17, "Lucas", "Saunders", 68, 69, "Wales", 68.5, "Attacker"),
+        new Player(18, "Alexander", "Daly", 43, 67, "England", 55.0, "Midfielder"),
+        new Player(19, "Arlo", "Gilchrist", 50, 65, "England", 57.5, "Attacker"),
+      ];
+      
+  export function create_new_team(): void {
+  const readline = require("readline-sync");
+
+      const players_2 = players;
+      players_2.sort((a, b) => b.getSET() - a.getSET());
+
+      
+      const defender = readline.question("Enter the required number of defenders: ");
+      const midfielders = readline.question("Enter the required number of midfielders : ");
+      const attackers = readline.question("Enter the required number of attackers : ");
+      
+      // checking fields for the qst 3
+      if(isNaN(defender) || isNaN(midfielders) || isNaN(attackers)){
+        console.log("Please enter a number for the required number of defenders, midfielders and attackers");
+        process.exit(1);
+      }
+      if(defender < 0 || midfielders < 0 || attackers < 0){
+        console.log("Please enter a positive number for the required number of defenders, midfielders and attackers");
+        process.exit(1);
+      }
+      
+      const qst3: Player[] = [];
+      let count_Defender: number = 0;
+      for (let i = 0; i < players_2.length; i++) {
+        if (
+          count_Defender < defender &&
+          players_2[i].getPosition() == "Defender"
+        ) {
+          qst3.push(players_2[i]);
+          count_Defender++;
+        }
+      }
+      
+      
+      let count_Midfielder: number = 0;
+      for (let i = 0; i < players_2.length; i++) {
+        if (
+          count_Midfielder < midfielders &&
+          players_2[i].getPosition() == "Midfielder"
+        ) {
+          qst3.push(players_2[i]);
+          count_Midfielder++;
+        }
+      }
+      let count_Attacker: number = 0;
+      for (let i = 0; i < players_2.length; i++) {
+        if (
+          count_Attacker < attackers &&
+          players_2[i].getPosition() == "Attacker"
+        ) {
+          qst3.push(players_2[i]);
+          count_Attacker++;
+        }
+      }
+      console.log(
+        "based on your preferences: ",
+        qst3.map((p) => p.describe())
+      );
+}
+export function display_all_teams(): void{
+console.log("All teams: ", players.map((p) => p.describe()));
+}
